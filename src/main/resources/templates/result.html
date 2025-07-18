@@ -1,0 +1,18 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>投稿結果</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <h1>投稿が完了しました</h1>
+
+    <p><strong>ID:</strong> <span th:text="${post.postId}"></span></p>
+    <p><strong>タイトル:</strong> <span th:text="${post.title}"></span></p>
+    <p><strong>内容:</strong> <span th:text="${post.content}"></span></p>
+    <p><strong>投稿日時:</strong> <span th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+
+    <a href="/">戻る</a>
+</body>
+</html>

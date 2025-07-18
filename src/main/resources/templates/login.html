@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>5chログインページ</title>
+</head>
+<body>
+    <h1>ログインページ</h1>
+    <div th:if="${message}">
+        <p th:text="${message}"></p>
+    </div>
+    <div th:if="${error}">
+        <p th:text="${error}"></p>
+    </div>
+    <form action="/login" method="post">
+        User ID:<input type="text" name="id"><br>
+        Password:<input type="password" name="pw">
+        <input type="submit" value="login">
+    </form>
+</body>
+</html>

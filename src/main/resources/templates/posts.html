@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>投稿一覧</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: .5rem; text-align: left; }
+        th { background: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <h1>投稿一覧</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>タイトル</th>
+                <th>内容</th>
+                <th>作成日時</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="post : ${posts}">
+                <td th:text="${post.postId}">1</td>
+                <td th:text="${post.title}">タイトル</td>
+                <td th:text="${post.content}">内容</td>
+                <td th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">2025-07-17 10:00</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/">戻る</a>
+</body>
+</html>
+
+

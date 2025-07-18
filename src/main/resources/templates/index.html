@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>5chトップページ</title>
+</head>
+<body>
+    <div th:if="${session.userId}">
+        <p th:text="${session.userId}"></p>
+    </div>
+    <div th:if="${message}">
+        <p th:text="${message}"></p>
+    </div>
+    <h1>5ch</h1>
+    <a href="/register">会員登録</a><br>
+    <a href="/login">ログインへ</a><br>
+    <a href="/form">投稿フォームへ</a><br>
+    <a href="/posts">全投稿を見る</a><br>
+</body>
+</html>
