@@ -7,6 +7,15 @@
         table { border-collapse: collapse; width: 100%; }
         th, td { border: 1px solid #ccc; padding: .5rem; text-align: left; }
         th { background: #f4f4f4; }
+        input[type="text"], textarea {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 1rem;
+    }
+    textarea {
+        height: 4rem; 
+        resize: vertical; 
+    }
     </style>
 </head>
 <body>
@@ -16,9 +25,10 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>タイトル</th>
-                <th>内容</th>
-                <th>作成日時</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Date</th>
+                <th>Reply</th>
             </tr>
         </thead>
 
@@ -28,6 +38,14 @@
                 <td th:text="${post.title}">タイトル</td>
                 <td th:text="${post.content}">内容</td>
                 <td th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">2025-07-17 10:00</td>
+                <td>
+                    <form th:action="@{/reply}" method="post">
+                        <input type="hidden" name="postId" th:value="${post.postId}" />
+                        <input type="text" name="title" placeholder="Input title" required />
+                        <textarea name="content" required></textarea>
+                        <button type="submit">reply</button>
+                    </form>
+                </td>
             </tr>
         </tbody>
     </table>

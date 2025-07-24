@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller
@@ -59,6 +61,15 @@ public class BbsController {
             return "login";
         }
     }
+    @PostMapping("/logout")
+    public String logout(
+        HttpSession session
+    ) {
+        session.invalidate();
+        return "redirect:/";
+    }
+    
+
     @GetMapping("/register")
     public String register() {
         return "register";
@@ -100,6 +111,16 @@ public class BbsController {
 
         return "result";
     }
+
+    @PostMapping("/reply")
+    public String handleReply(@RequestParam("postId") long postId,
+                              @RequestParam("title") String title,
+                              @RequestParam("content") String content,
+                              Model model) {
+        Post reply = postService.saveReply(postId, title, content);
+        return "redirect:/posts";
+    }
+    
     
 
     //JSONを返す

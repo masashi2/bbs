@@ -11,15 +11,16 @@ import jakarta.persistence.*;
 public class Post {
     @Id//主キーであるidにのみアノテーションを付ける
     @GeneratedValue(strategy = GenerationType.IDENTITY)//主キーの自動生成
-    private Long postId;
+    private long postId;
     private String title;
     private String content;
     private LocalDateTime createdAt;
 
-    @JoinColumn(name = "parent_id")
-    private Post parent;
+    @ManyToOne
+    @JoinColumn(name = "parentid")
+    private Post parentId;
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "parentId", cascade = CascadeType.ALL)
     private List<Post> replies = new ArrayList<>();
 
     @PrePersist
@@ -27,8 +28,8 @@ public class Post {
         createdAt = LocalDateTime.now();
     }
 
-    public Long getPostId() { return postId; }
-    public void setPostid(Long postId) { this.postId = postId; }
+    public long getPostId() { return postId; }
+    public void setPostid(long postId) { this.postId = postId; }
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
@@ -39,8 +40,8 @@ public class Post {
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
-    public Post getParent() { return parent; }
-    public void setParent(Post parent) { this.parent = parent; }
+    public Post getParentId() { return parentId; }
+    public void setParentId(Post parentId) { this.parentId = parentId; }
 
     public List<Post> getReplies() { return replies; }
     public void setReplies(List<Post> replies) { this.replies = replies; }
